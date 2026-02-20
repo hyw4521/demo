@@ -1,0 +1,288 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{B5F846DC-C58C-4472-A29B-DDB9B0EF0E07}</ProjectGuid>
+    <Keyword>QtVS_v304</Keyword>
+    <QtMsBuild Condition="'$(QtMsBuild)'=='' OR !Exists('$(QtMsBuild)\qt.targets')">$(MSBuildProjectDirectory)\QtMsBuild</QtMsBuild>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <Import Project="$(ProjectDir)\config.props" />
+  <PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <PlatformToolset>v145</PlatformToolset>
+    <PreferredToolArchitecture>x64</PreferredToolArchitecture>
+    <CharacterSet>Unicode</CharacterSet>
+    <UseDebugLibraries>true</UseDebugLibraries>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <PlatformToolset>v145</PlatformToolset>
+    <PreferredToolArchitecture>x64</PreferredToolArchitecture>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Condition="Exists('$(QtMsBuild)\qt_defaults.props')">
+    <Import Project="$(QtMsBuild)\qt_defaults.props" />
+  </ImportGroup>
+  <Target Name="QtMsBuildNotFound" BeforeTargets="CustomBuild;ClCompile" Condition="!Exists('$(QtMsBuild)\qt.targets') or !Exists('$(QtMsBuild)\qt.props')">
+    <Message Importance="High" Text="QtMsBuild: could not locate qt.targets, qt.props; project may not build correctly." />
+  </Target>
+  <ImportGroup Label="ExtensionSettings" />
+  <ImportGroup Label="Shared" />
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <OutDir>$(ProjectDir).app_d\</OutDir>
+    <IntDir>$(ProjectDir).build_d\</IntDir>
+    <IncludePath>$(ProjectDir);$(ProjectDir)source;$(ProjectDir)source\src\libcurl\include;$(ProjectDir)source\ui;$(ProjectDir)source\ui\widget;$(ProjectDir)source\src\ignore</IncludePath>
+    <LibraryPath>$(ProjectDir)source\src\libcurl\x64;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <OutDir>$(ProjectDir).app\</OutDir>
+    <IntDir>$(ProjectDir).build\</IntDir>
+    <IncludePath>$(ProjectDir);$(ProjectDir)source;$(ProjectDir)source\src\libcurl\include;$(ProjectDir)source\ui;$(ProjectDir)source\ui\widget;$(ProjectDir)source\src\ignore</IncludePath>
+    <LibraryPath>$(ProjectDir)source\src\libcurl\x64;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Label="QtSettings" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <QtModules>core;widgets</QtModules>
+    <QtInstall>Qt6.9.0_64_shared</QtInstall>
+    <QtBuildConfig>debug</QtBuildConfig>
+  </PropertyGroup>
+  <PropertyGroup Label="QtSettings" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <QtModules>core;widgets</QtModules>
+    <QtInstall>Qt6.9.0_64_static</QtInstall>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <BufferSecurityCheck>false</BufferSecurityCheck>
+      <AdditionalOptions>/utf-8 %(AdditionalOptions)</AdditionalOptions>
+      <PreprocessorDefinitions>_WINSOCKAPI_;QIOCR_SHARED;$(QiPreprocessorDefinitions);%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <WarningLevel>TurnOffAllWarnings</WarningLevel>
+    </ClCompile>
+    <Link />
+    <Manifest>
+      <AdditionalManifestFiles>manifest.xml %(AdditionalManifestFiles)</AdditionalManifestFiles>
+    </Manifest>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <UACExecutionLevel>RequireAdministrator</UACExecutionLevel>
+      <IgnoreSpecificDefaultLibraries>LIBCMT.LIB</IgnoreSpecificDefaultLibraries>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <BufferSecurityCheck>false</BufferSecurityCheck>
+      <AdditionalOptions>/utf-8 %(AdditionalOptions)</AdditionalOptions>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <PreprocessorDefinitions>_WINSOCKAPI_;QIOCR_SHARED;$(QiPreprocessorDefinitions);%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <WarningLevel>TurnOffAllWarnings</WarningLevel>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <UACExecutionLevel>RequireAdministrator</UACExecutionLevel>
+      <IgnoreSpecificDefaultLibraries>LIBCMT.LIB</IgnoreSpecificDefaultLibraries>
+    </Link>
+    <Manifest>
+      <AdditionalManifestFiles>manifest.xml %(AdditionalManifestFiles)</AdditionalManifestFiles>
+    </Manifest>
+  </ItemDefinitionGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">
+    <Import Project="$(QtMsBuild)\qt.targets" />
+  </ImportGroup>
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+  <ItemGroup>
+    <ClCompile Include="source\main.cpp" />
+    <ClCompile Include="source\src\action.cpp" />
+    <ClCompile Include="source\src\func.cpp" />
+    <ClCompile Include="source\src\init.cpp" />
+    <ClCompile Include="source\src\input.cpp" />
+    <ClCompile Include="source\src\integrity_verify.cpp" />
+    <ClCompile Include="source\src\interpreter.cpp" />
+    <ClCompile Include="source\src\json.cpp" />
+    <ClCompile Include="source\src\macro.cpp" />
+    <ClCompile Include="source\src\scriptinterpreter.cpp" />
+    <ClCompile Include="source\src\sha256.cpp" />
+    <ClCompile Include="source\src\thread.cpp" />
+    <ClCompile Include="source\src\type.cpp" />
+    <ClCompile Include="source\ui\MsgViewUi.cpp" />
+    <ClCompile Include="source\ui\VarViewUi.cpp">
+      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">input</DynamicSource>
+      <QtMocFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">%(Filename).moc</QtMocFileName>
+      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Release|x64'">input</DynamicSource>
+      <QtMocFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">%(Filename).moc</QtMocFileName>
+    </ClCompile>
+    <ClCompile Include="source\ui\UpdateUi.cpp">
+      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">input</DynamicSource>
+      <QtMocFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">%(Filename).moc</QtMocFileName>
+      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Release|x64'">input</DynamicSource>
+      <QtMocFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">%(Filename).moc</QtMocFileName>
+    </ClCompile>
+    <ClCompile Include="source\ui\TriggerUi.cpp">
+      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">input</DynamicSource>
+      <QtMocFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">%(Filename).moc</QtMocFileName>
+      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Release|x64'">input</DynamicSource>
+      <QtMocFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">%(Filename).moc</QtMocFileName>
+    </ClCompile>
+    <ClCompile Include="source\ui\SettingsUi.cpp">
+      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">input</DynamicSource>
+      <QtMocFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">%(Filename).moc</QtMocFileName>
+      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Release|x64'">input</DynamicSource>
+      <QtMocFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">%(Filename).moc</QtMocFileName>
+    </ClCompile>
+    <ClCompile Include="source\ui\RecordUi.cpp">
+      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">input</DynamicSource>
+      <QtMocFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">%(Filename).moc</QtMocFileName>
+      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Release|x64'">input</DynamicSource>
+      <QtMocFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">%(Filename).moc</QtMocFileName>
+    </ClCompile>
+    <ClCompile Include="source\ui\PopsUi.cpp">
+      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">input</DynamicSource>
+      <QtMocFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">%(Filename).moc</QtMocFileName>
+      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Release|x64'">input</DynamicSource>
+      <QtMocFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">%(Filename).moc</QtMocFileName>
+    </ClCompile>
+    <ClCompile Include="source\ui\MoreUi.cpp">
+      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">input</DynamicSource>
+      <QtMocFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">%(Filename).moc</QtMocFileName>
+      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Release|x64'">input</DynamicSource>
+      <QtMocFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">%(Filename).moc</QtMocFileName>
+    </ClCompile>
+    <ClCompile Include="source\ui\MainUi.cpp">
+      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">input</DynamicSource>
+      <QtMocFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">%(Filename).moc</QtMocFileName>
+      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Release|x64'">input</DynamicSource>
+      <QtMocFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">%(Filename).moc</QtMocFileName>
+    </ClCompile>
+    <ClCompile Include="source\ui\MacroUi.cpp">
+      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">input</DynamicSource>
+      <QtMocFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">%(Filename).moc</QtMocFileName>
+      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Release|x64'">input</DynamicSource>
+      <QtMocFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">%(Filename).moc</QtMocFileName>
+    </ClCompile>
+    <ClCompile Include="source\ui\FuncUi.cpp">
+      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">input</DynamicSource>
+      <QtMocFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">%(Filename).moc</QtMocFileName>
+      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Release|x64'">input</DynamicSource>
+      <QtMocFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">%(Filename).moc</QtMocFileName>
+    </ClCompile>
+    <ClCompile Include="source\ui\EditUi.cpp">
+      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">input</DynamicSource>
+      <QtMocFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">%(Filename).moc</QtMocFileName>
+      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Release|x64'">input</DynamicSource>
+      <QtMocFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">%(Filename).moc</QtMocFileName>
+    </ClCompile>
+    <ClCompile Include="source\ui\AboutUi.cpp">
+      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">input</DynamicSource>
+      <QtMocFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">%(Filename).moc</QtMocFileName>
+      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Release|x64'">input</DynamicSource>
+      <QtMocFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">%(Filename).moc</QtMocFileName>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="source\src\action.h" />
+    <ClInclude Include="source\src\cvt.h" />
+    <ClInclude Include="source\src\func.h" />
+    <ClInclude Include="source\src\inc_external.h" />
+    <ClInclude Include="source\src\inc_header.h" />
+    <ClInclude Include="source\src\inc_project.h" />
+    <ClInclude Include="source\src\integrity_verify.h" />
+    <ClInclude Include="source\src\interpreter.h" />
+    <ClInclude Include="source\src\json.h" />
+    <ClInclude Include="source\src\macro.h" />
+    <ClInclude Include="source\src\range.h" />
+    <ClInclude Include="source\src\scriptinterpreter.h" />
+    <ClInclude Include="source\src\thread.h" />
+    <ClInclude Include="source\src\type.h" />
+    <ClInclude Include="source\src\ui.h" />
+    <ClInclude Include="source\src\update.h" />
+    <QtMoc Include="source\ui\MsgViewUi.h" />
+    <QtMoc Include="source\ui\widget\QFrameless.h" />
+    <QtMoc Include="source\ui\widget\QFileEdit.h" />
+    <QtMoc Include="source\ui\widget\QDistanceSelection.h" />
+    <QtMoc Include="source\ui\widget\QTextDialog.h" />
+    <QtMoc Include="source\ui\VarViewUi.h" />
+    <QtMoc Include="source\ui\widget\QEditDialog.h" />
+    <QtMoc Include="source\ui\widget\QMacroTable.h" />
+    <QtMoc Include="source\ui\UpdateUi.h" />
+    <QtMoc Include="source\ui\widget\QWindowSelection.h" />
+    <QtMoc Include="source\ui\widget\QPopText.h" />
+    <QtMoc Include="source\ui\widget\QKeyEdit.h" />
+    <QtMoc Include="source\ui\PopsUi.h" />
+    <QtMoc Include="source\ui\widget\QRectView.h" />
+    <QtMoc Include="source\ui\widget\QRectSelection.h" />
+    <QtMoc Include="source\ui\widget\QPointView.h" />
+    <QtMoc Include="source\ui\widget\QPointSelection.h" />
+    <QtMoc Include="source\ui\widget\QColorSelection.h" />
+    <QtMoc Include="source\ui\TriggerUi.h" />
+    <QtMoc Include="source\ui\SettingsUi.h" />
+    <QtMoc Include="source\ui\RecordUi.h" />
+    <QtMoc Include="source\ui\MoreUi.h" />
+    <QtMoc Include="source\ui\MainUi.h" />
+    <QtMoc Include="source\ui\MacroUi.h" />
+    <QtMoc Include="source\ui\FuncUi.h" />
+    <QtMoc Include="source\ui\EditUi.h" />
+    <QtMoc Include="source\ui\AboutUi.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <QtUic Include="source\ui\AboutUi.ui" />
+    <QtUic Include="source\ui\EditUi.ui" />
+    <QtUic Include="source\ui\FuncUi.ui" />
+    <QtUic Include="source\ui\MacroUi.ui" />
+    <QtUic Include="source\ui\MainUi.ui" />
+    <QtUic Include="source\ui\MoreUi.ui" />
+    <QtUic Include="source\ui\MsgViewUi.ui" />
+    <QtUic Include="source\ui\RecordUi.ui" />
+    <QtUic Include="source\ui\SettingsUi.ui" />
+    <QtUic Include="source\ui\PopsUi.ui" />
+    <QtUic Include="source\ui\TriggerUi.ui" />
+    <QtUic Include="source\ui\UpdateUi.ui" />
+    <QtUic Include="source\ui\VarViewUi.ui" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="source\res\QuickInput.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <QtRcc Include="source\res\QuickInput.qrc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="versions.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="config.props" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="source\res\arrow.png" />
+    <Image Include="source\res\blade.png" />
+    <Image Include="source\res\candy.png" />
+    <Image Include="source\res\checked.png" />
+    <Image Include="source\res\close.png" />
+    <Image Include="source\res\hide.png" />
+    <Image Include="source\res\icon.ico" />
+    <Image Include="source\res\icon.png" />
+    <Image Include="source\res\min.png" />
+    <Image Include="source\res\neko.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Media Include="source\res\sound\notify.wav" />
+    <Media Include="source\res\sound\off.wav" />
+    <Media Include="source\res\sound\on.wav" />
+    <Media Include="source\res\sound\run.wav" />
+    <Media Include="source\res\sound\stop.wav" />
+  </ItemGroup>
+</Project>
