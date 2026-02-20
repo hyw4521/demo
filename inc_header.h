@@ -1,0 +1,9 @@
+﻿#pragma once
+// qt
+#include <QtCore>
+#include <QtWidgets>
+// std
+#include <atomic>
+#include <variant>
+#include <functional>
+#include <fstream>
